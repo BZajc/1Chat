@@ -1,10 +1,13 @@
 // Utilities
-// @import "./utils/colors";
-// @import "./utils/mixins";
-// @import "./utils/default";
+@import "./utils/colors";
+@import "./utils/mixins";
+@import "./utils/default";
 // @import "./utils/animations";
 
 // Components Styles
+@import "./components/signUp";
 
+// Pages Styles
+@import "./pages/signPage";
 
 // Media Queries

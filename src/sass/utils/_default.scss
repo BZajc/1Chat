@@ -1,0 +1,32 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+}
+
+button {
+  position: relative;
+  background-color: transparent;
+  border: 3px solid transparent;
+  cursor: pointer;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+*:focus {
+  outline: 2px solid white;
+}

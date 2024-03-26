@@ -1,59 +1,19 @@
-import React, { useState } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
-import { initializeApp } from "firebase/app";
+import React from "react";
+import { Firestore } from "firebase/firestore";
+import SignUp from "../components/SingUp";
 
-const firebaseConfig = {
-    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.REACT_APP_FIREBASE_APP_ID,
-    measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
-};
+interface SignPageProps {
+  db: Firestore;
+}
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-function SignPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleRegister = async () => {
-    const auth = getAuth();
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      console.log("User registered:", userCredential.user);
-
-      const usersCollection = collection(db, "users");
-      await addDoc(usersCollection, { email, password });
-    } catch (error) {
-      console.error("Registration error:", error);
-    }
-  };
-
+function SignPage({ db }: SignPageProps) {
   return (
-    <div>
-      <h2>Register</h2>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleRegister}>Register</button>
-    </div>
+    <header>
+      <div className="sign-page">
+      <SignUp db={db} />
+        {/* <h1 className="sign-page__h1">1Chat: Let it happen</h1> */}
+      </div>
+    </header>
   );
 }
 

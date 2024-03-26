@@ -1,0 +1,136 @@
+.sign-up {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  @include backgroundStyles("../../images/signBg.jpg");
+  color: white;
+  &__overflow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  &__form {
+    text-align: center;
+    margin: 6rem 0 12rem;
+    padding: 1rem;
+    width: 90%;
+    max-width: 400px;
+    z-index: 1;
+  }
+  &__h2 {
+    position: relative;
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 2rem;
+    font-weight: 100;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      border-bottom: 1px solid white;
+      width: 50px;
+    }
+    &::before {
+      left: -10%;
+    }
+    &::after {
+      right: -10%;
+    }
+  }
+  &__label {
+    text-align: left;
+    display: block;
+    font-size: 1.75rem;
+    padding: 0.5rem;
+  }
+  &__input {
+    width: 100%;
+    font-size: 1.75rem;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(3px);
+    transition: background-color 0.3s;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.75);
+    }
+  }
+  &__forgot-password,
+  &__confirm {
+    display: block;
+  }
+  &__register {
+    border-radius: 3px;
+  }
+  &__forgot-password {
+    text-align: left;
+    margin: 0;
+    padding: 1rem;
+    color: white;
+    font-size: 1.5rem;
+    &:hover {
+      color: $blue;
+    }
+  }
+  &__line {
+    height: 16px;
+    width: 2px;
+    background-color: white;
+  }
+  &__confirm, &__change-form-button {
+    font-size: 2rem;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 3px;
+    border: none;
+    padding: 0.75rem;
+    width: 220px;
+    margin: 2rem auto;
+    border-radius: 25px;
+    &:hover {
+      background-color: white;
+    }
+  }
+  &__logo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 75px;
+    height: 75px;
+    z-index: 1;
+  }
+  &__change-form {
+    margin-top: 1rem;
+  }
+  &__change-form-text {
+    position: relative;
+    font-size: 2rem;
+    margin-top: 3rem;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      border-bottom: 1px solid white;
+      width: 50px;
+    }
+    &::before {
+      left: 0%;
+    }
+    &::after {
+      right: 0%;
+    }
+  }
+  &__change-form-button {
+    background-color: rgba(53, 161, 214, 0.75);
+    color: white;
+    margin-top: 1rem;
+    &:hover {
+        color: $blue;
+    }
+  }
+}
