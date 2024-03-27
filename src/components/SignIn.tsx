@@ -1,0 +1,99 @@
+import React from "react";
+import logo from "../images/1chatlogo.png";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { selectCheckEmailMessage } from "../store/slices/signSlice";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+
+
+function SignIn() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const checkEmailMessage = useSelector(selectCheckEmailMessage);
+  const navigate = useNavigate()
+
+const handleLogin = async () => {
+    const auth = getAuth();
+    try {
+        await signInWithEmailAndPassword(auth, email, password);
+        console.log("Logged in successfully");
+        // Check if the user's email is verified
+        const user = auth.currentUser;
+        if (user && !user.emailVerified) {
+            console.error("Email not verified. Please check your email for a verification link.");
+            return;
+        }
+
+    } catch (error: any) {
+        if (error.code === "auth/invalid-email") {
+            console.error("Invalid email. Please enter a valid email.");
+        } else if (error.code === "auth/user-not-found") {
+            console.error("User not found. Please check your email and password.");
+        } else if (error.code === "auth/wrong-password") {
+            console.error("Wrong password. Please check your email and password.");
+        } else {
+            console.error("Login error:", error);
+        }
+    }
+    setEmail("");
+    setPassword("");
+};
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
+  const handleChangeForm = () => {
+    navigate("/signup");
+  }
+
+  return (
+    <div className="sign-in">
+      <img src={logo} alt="1chat logo" className="sign-in__logo" />
+      <div className="sign-in__overflow"></div>
+      <form className="sign-in__form" onSubmit={handleSubmit}>
+        <h2 className="sign-in__h2">Sign In</h2>
+        {checkEmailMessage && (
+          <p className="sign-in__register-message">
+            Account has been created. Check your email.
+          </p>
+        )}
+        <label htmlFor="email" className="sign-in__label">
+          Email
+        </label>
+        <input
+          type="email"
+          placeholder="Email"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="sign-in__input"
+        />
+        <label htmlFor="password" className="sign-in__label">
+          Password
+        </label>
+        <input
+          type="password"
+          placeholder="Password"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="sign-in__input"
+        />
+        <button className="sign-in__forgot-password">Forgot password?</button>
+        {/* <p className="sign-in__register-message">{registerMessage}</p> */}
+        <button onClick={handleLogin} className="sign-in__confirm">
+          Log In
+        </button>
+        <div className="sign-in__change-form">
+          <p className="sign-in__change-form-text">Don't have an account?</p>
+          <button className="sign-in__change-form-button" onClick={handleChangeForm}>Sign Up here</button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+export default SignIn;

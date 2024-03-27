@@ -11,7 +11,9 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectRegisterMessage,
   setRegisterMessage,
+  setCheckEmailMessage,
 } from "../store/slices/signSlice";
+import { useNavigate } from "react-router-dom";
 
 interface SignUpProps {
   db: Firestore;
@@ -23,6 +25,7 @@ function SignUp({ db }: SignUpProps) {
 
   const dispatch = useDispatch();
   const registerMessage = useSelector(selectRegisterMessage);
+  const navigate = useNavigate();
 
   const handleRegister = async () => {
     if (password !== confirmPassword) {
@@ -47,23 +50,28 @@ function SignUp({ db }: SignUpProps) {
       const usersCollection = collection(db, "users");
       await addDoc(usersCollection, { email, password });
       await sendEmailVerification(user);
-      dispatch(
-        setRegisterMessage("Registration successful. Please verify your email.")
-      );  
+      console.log("Account created. Check your email.");
+      dispatch(setCheckEmailMessage(true));
+      dispatch(setRegisterMessage(""));
     } catch (error: any) {
-      switch (error.code) {
-      case "auth/invalid-email":
-        dispatch(setRegisterMessage("Invalid email. Please enter a valid email."));
-        break;
-      case "auth/email-already-in-use":
-        dispatch(setRegisterMessage("Email is already in use. Please use a different email."));
-        break;
-      case "auth/weak-password":
-        dispatch(setRegisterMessage("Weak password. Please choose a stronger password."));
-        break;
-      default:
+      if (error.code === "auth/invalid-email") {
+        dispatch(
+          setRegisterMessage("Invalid email. Please enter a valid email.")
+        );
+      } else if (error.code === "auth/email-already-in-use") {
+        dispatch(
+          setRegisterMessage(
+            "Email is already in use. Please use a different email."
+          )
+        );
+      } else if (error.code === "auth/weak-password") {
+        dispatch(
+          setRegisterMessage(
+            "Weak password. Please choose a stronger password."
+          )
+        );
+      } else {
         dispatch(setRegisterMessage("Something went wrong. Please try again."));
-        break;
       }
       console.error("Registration error:", error);
     }
@@ -72,6 +80,10 @@ function SignUp({ db }: SignUpProps) {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
+
+  const handleChangeForm = () => {
+    navigate("/signin");
+  }
 
   return (
     <div className="sign-up">
@@ -118,7 +130,7 @@ function SignUp({ db }: SignUpProps) {
         </button>
         <div className="sign-up__change-form">
           <p className="sign-up__change-form-text">Already got account?</p>
-          <button className="sign-up__change-form-button">Log In here</button>
+          <button className="sign-up__change-form-button" onClick={handleChangeForm}>Log In here</button>
         </div>
       </form>
     </div>
