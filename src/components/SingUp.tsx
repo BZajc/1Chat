@@ -75,7 +75,7 @@ function SignUp({ db }: SignUpProps) {
           onChange={(e) => setConfirmPassword(e.target.value)}
           className="sign-up__input"
         />
-        <button className="sign-up__forgot-password">Forgot password?</button>
+
         <button onClick={handleRegister} className="sign-up__confirm">
           Register
         </button>
