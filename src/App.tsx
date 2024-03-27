@@ -2,6 +2,8 @@ import React from "react";
 import SignPage from "./pages/SignPage";
 import { getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -17,7 +19,11 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 function App() {
-  return <SignPage db={db} />;
+  return (
+    <Provider store={store}>
+      <SignPage db={db} />
+    </Provider>
+  );
 }
 
 export default App;

@@ -1,8 +1,17 @@
 import React, { useState } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 import { Firestore } from "firebase/firestore";
 import logo from "../images/1chatlogo.png";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectRegisterMessage,
+  setRegisterMessage,
+} from "../store/slices/signSlice";
 
 interface SignUpProps {
   db: Firestore;
@@ -12,9 +21,15 @@ function SignUp({ db }: SignUpProps) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const dispatch = useDispatch();
+  const registerMessage = useSelector(selectRegisterMessage);
+
   const handleRegister = async () => {
     if (password !== confirmPassword) {
       console.error("Password and Confirm Password do not match");
+      dispatch(
+        setRegisterMessage("Password and Confirm Password do not match")
+      );
       return;
     }
     setEmail("");
@@ -22,12 +37,34 @@ function SignUp({ db }: SignUpProps) {
     setConfirmPassword("");
     const auth = getAuth();
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
 
       const usersCollection = collection(db, "users");
       await addDoc(usersCollection, { email, password });
-      console.log("Registration successful");
-    } catch (error) {
+      await sendEmailVerification(user);
+      dispatch(
+        setRegisterMessage("Registration successful. Please verify your email.")
+      );  
+    } catch (error: any) {
+      switch (error.code) {
+      case "auth/invalid-email":
+        dispatch(setRegisterMessage("Invalid email. Please enter a valid email."));
+        break;
+      case "auth/email-already-in-use":
+        dispatch(setRegisterMessage("Email is already in use. Please use a different email."));
+        break;
+      case "auth/weak-password":
+        dispatch(setRegisterMessage("Weak password. Please choose a stronger password."));
+        break;
+      default:
+        dispatch(setRegisterMessage("Something went wrong. Please try again."));
+        break;
+      }
       console.error("Registration error:", error);
     }
   };
@@ -75,7 +112,7 @@ function SignUp({ db }: SignUpProps) {
           onChange={(e) => setConfirmPassword(e.target.value)}
           className="sign-up__input"
         />
-
+        <p className="sign-up__register-message">{registerMessage}</p>
         <button onClick={handleRegister} className="sign-up__confirm">
           Register
         </button>
