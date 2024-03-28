@@ -4,6 +4,8 @@ import { getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import MainPage from "./pages/MainPage";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -22,6 +24,11 @@ function App() {
   return (
     <Provider store={store}>
       <SignPage db={db} />
+      <Router>
+        <Routes>
+          <Route path="/app" element={<MainPage />} />
+        </Routes>
+      </Router>
     </Provider>
   );
 }

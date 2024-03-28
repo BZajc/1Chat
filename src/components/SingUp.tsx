@@ -6,7 +6,6 @@ import {
 } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 import { Firestore } from "firebase/firestore";
-import logo from "../images/1chatlogo.png";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectRegisterMessage,
@@ -53,6 +52,7 @@ function SignUp({ db }: SignUpProps) {
       console.log("Account created. Check your email.");
       dispatch(setCheckEmailMessage(true));
       dispatch(setRegisterMessage(""));
+      navigate("/signin");
     } catch (error: any) {
       if (error.code === "auth/invalid-email") {
         dispatch(
@@ -83,11 +83,10 @@ function SignUp({ db }: SignUpProps) {
 
   const handleChangeForm = () => {
     navigate("/signin");
-  }
+  };
 
   return (
     <div className="sign-up">
-      <img src={logo} alt="1chat logo" className="sign-up__logo" />
       <div className="sign-up__overflow"></div>
       <form className="sign-up__form" onSubmit={handleSubmit}>
         <h2 className="sign-up__h2">Create Account</h2>
@@ -130,7 +129,12 @@ function SignUp({ db }: SignUpProps) {
         </button>
         <div className="sign-up__change-form">
           <p className="sign-up__change-form-text">Already got account?</p>
-          <button className="sign-up__change-form-button" onClick={handleChangeForm}>Log In here</button>
+          <button
+            className="sign-up__change-form-button"
+            onClick={handleChangeForm}
+          >
+            Log In here
+          </button>
         </div>
       </form>
     </div>

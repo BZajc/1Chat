@@ -2,7 +2,6 @@
   position: relative;
   display: flex;
   justify-content: center;
-  @include backgroundStyles("../../images/signBg.jpg");
   color: white;
   &__overflow {
     position: absolute;
@@ -19,6 +18,10 @@
     width: 90%;
     max-width: 400px;
     z-index: 1;
+    @include appearFromTop;
+    :focus {
+      outline: 2px solid white;
+    }
   }
   &__h2 {
     position: relative;
@@ -82,14 +85,6 @@
   &__confirm {
     display: block;
     margin-top: 0;
-  }
-  &__logo {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 75px;
-    height: 75px;
-    z-index: 1;
   }
   &__change-form {
     margin-top: 1rem;

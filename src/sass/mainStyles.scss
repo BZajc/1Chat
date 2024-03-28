@@ -2,13 +2,16 @@
 @import "./utils/colors";
 @import "./utils/mixins";
 @import "./utils/default";
-// @import "./utils/animations";
+@import "./utils/animations";
 
 // Components Styles
 @import "./components/signUp";
 @import "./components/signIn";
+@import "./components/forgotPassword";
+@import "./components/mobileNav";
 
 // Pages Styles
 @import "./pages/signPage";
+@import "./pages/mainPage";
 
 // Media Queries
