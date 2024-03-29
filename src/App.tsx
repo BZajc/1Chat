@@ -8,13 +8,10 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate,
 } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 import ForgotPassword from "./components/ForgotPassword";
-import { selectLoggedIn } from "./store/slices/signSlice";
-import { useSelector } from "react-redux";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -38,7 +35,6 @@ const AppWrapper = () => {
 };
 
 function App() {
-  const loggedIn = useSelector(selectLoggedIn);
 
   return (
     <Provider store={store}>
