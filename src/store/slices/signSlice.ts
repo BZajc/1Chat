@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 interface SignState {
   registerMessage: string;
   checkEmailMessage: boolean;
+  loggedIn: boolean;
 }
 
 const signSlice = createSlice({
@@ -10,6 +11,7 @@ const signSlice = createSlice({
   initialState: {
     registerMessage: "",
     checkEmailMessage: false,
+    loggedIn: false,
   },
   reducers: {
     setRegisterMessage: (state: SignState, action: { payload: string }) => {
@@ -18,12 +20,19 @@ const signSlice = createSlice({
     setCheckEmailMessage: (state: SignState, action: { payload: boolean }) => {
       state.checkEmailMessage = action.payload;
     },
+    setLoggedIn: (state: SignState, action: { payload: boolean }) => {
+      state.loggedIn = action.payload;
+      localStorage.setItem('loggedIn', JSON.stringify(action.payload));
+    },
   },
 });
 
 export default signSlice.reducer;
-export const { setRegisterMessage, setCheckEmailMessage } = signSlice.actions;
+export const { setRegisterMessage, setCheckEmailMessage, setLoggedIn } =
+  signSlice.actions;
 export const selectRegisterMessage = (state: { sign: SignState }) =>
   state.sign.registerMessage;
 export const selectCheckEmailMessage = (state: { sign: SignState }) =>
   state.sign.checkEmailMessage;
+export const selectLoggedIn = (state: { sign: SignState }) =>
+  state.sign.loggedIn;

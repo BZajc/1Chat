@@ -1,11 +1,20 @@
 import React from "react";
-import SignPage from "./pages/SignPage";
 import { getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import MainPage from "./pages/MainPage";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import SignUp from "./components/SignUp";
+import SignIn from "./components/SignIn";
+import ForgotPassword from "./components/ForgotPassword";
+import { selectLoggedIn } from "./store/slices/signSlice";
+import { useSelector } from "react-redux";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -20,17 +29,30 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-function App() {
+const AppWrapper = () => {
   return (
     <Provider store={store}>
-      <SignPage db={db} />
+      <App />
+    </Provider>
+  );
+};
+
+function App() {
+  const loggedIn = useSelector(selectLoggedIn);
+
+  return (
+    <Provider store={store}>
       <Router>
         <Routes>
           <Route path="/app" element={<MainPage />} />
+          <Route path="/app/*" element={<MainPage />} />
+          <Route path="/signup" element={<SignUp db={db} />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
         </Routes>
       </Router>
     </Provider>
   );
 }
 
-export default App;
+export default AppWrapper;

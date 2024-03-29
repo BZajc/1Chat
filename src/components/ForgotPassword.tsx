@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import logo from "../images/1chatlogo.png";
 import { sendPasswordResetEmail, getAuth } from "firebase/auth";
 
 function ForgotPassword() {
@@ -30,6 +31,7 @@ function ForgotPassword() {
 
   return (
     <div className="forgot-password">
+      <img src={logo} alt="1chat logo" className="sign-in__logo" />
       <div className="forgot-password__overflow"></div>
       <form className="forgot-password__form" onSubmit={handleSubmit}>
         <h2 className="forgot-password__h2">Reset your password</h2>
@@ -48,14 +50,18 @@ function ForgotPassword() {
           Reset
         </button>
         <div className="forgot-password__change-form">
-          <p className="forgot-password__change-form-text">Don't have an account?</p>
+          <p className="forgot-password__change-form-text">
+            Don't have an account?
+          </p>
           <button
             className="forgot-password__change-form-button"
             onClick={handleChangeFormToRegister}
           >
             Sign up here
           </button>
-          <p className="forgot-password__change-form-text">Already got account?</p>
+          <p className="forgot-password__change-form-text">
+            Already got account?
+          </p>
           <button
             className="forgot-password__change-form-button"
             onClick={handleChangeFormToLogin}

@@ -11,3 +11,18 @@
     }
   }
 }
+
+@mixin navHide {
+  animation: NavHide 0.3s linear forwards;
+  @keyframes NavHide {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      display: none;
+      opacity: 0;
+      transform: translatex(-100%);
+    }
+  }
+}

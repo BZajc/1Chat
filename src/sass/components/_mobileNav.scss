@@ -1,0 +1,144 @@
+.mobile-nav {
+  height: 100vh;
+  overflow-y: auto;
+  background-color: $black;
+  width: 250px;
+  color: $white;
+  transition: width 0.3s;
+  border-radius: 8px;
+
+  &__logo {
+    height: 70px;
+  }
+
+  &__top-box {
+    display: flex;
+  }
+
+  &__user-counter {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    font-size: 1.5rem;
+    white-space: nowrap;
+  }
+
+  &__middle-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__button {
+    padding: 0.75rem;
+    margin: 1rem;
+    color: $white;
+    font-size: 1.75rem;
+    background-color: $darkBlue;
+    border-radius: 8px;
+    transition: color 0.3s, background-color 0.3s;
+
+    &:hover {
+      color: $blue;
+      background-color: $white;
+    }
+  }
+
+  &__github-icon {
+    margin-left: 0.5rem;
+  }
+
+  &__github-text {
+    white-space: nowrap;
+  }
+
+  &__nav-button {
+    width: 39px;
+    height: 39px;
+  }
+
+  &__list {
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__option-icon {
+    margin-right: 1rem;
+
+    &--open {
+      display: none;
+    }
+  }
+
+  &__option-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1.75rem;
+    border-radius: 8px;
+    padding: 0.75rem;
+    margin: 0.5rem 1rem;
+    width: 100%;
+    color: $white;
+
+    &:hover {
+      color: $blue;
+      background-color: $white;
+    }
+
+    &--logout:hover {
+      color: $red;
+      .mobile-nav__option-icon--closed {
+        display: none;
+      }
+      .mobile-nav__option-icon--open {
+        display: block;
+      }
+    }
+  }
+
+  &__option-name {
+    white-space: nowrap;
+  }
+
+  &--mini {
+    width: 75px;
+    .mobile-nav {
+      &__option-name,
+      &__github-button {
+        position: absolute;
+        @include navHide;
+      }
+      &__user-counter {
+        display: none;
+      }
+      &__option-button {
+        width: 50px;
+        height: 43px;
+      }
+      &__option-icon {
+        margin: 0 auto;
+      }
+      &__button {
+        margin: 1rem auto;
+      }
+      &__top-box {
+        display: flex;
+        align-items: flex-start;
+      }
+      &__logo {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      &__item:first-child {
+        margin-top: 70px;
+      }
+    }
+  }
+}

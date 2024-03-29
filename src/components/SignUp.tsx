@@ -13,6 +13,7 @@ import {
   setCheckEmailMessage,
 } from "../store/slices/signSlice";
 import { useNavigate } from "react-router-dom";
+import logo from "../images/1chatlogo.png";
 
 interface SignUpProps {
   db: Firestore;
@@ -87,6 +88,7 @@ function SignUp({ db }: SignUpProps) {
 
   return (
     <div className="sign-up">
+      <img src={logo} alt="1chat logo" className="sign-up__logo" />
       <div className="sign-up__overflow"></div>
       <form className="sign-up__form" onSubmit={handleSubmit}>
         <h2 className="sign-up__h2">Create Account</h2>
