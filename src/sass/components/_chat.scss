@@ -1,0 +1,12 @@
+.chat {
+  display: flex;
+  background-color: $darkBlue;
+  color: $white;
+  min-height: 100vh;
+  &__box {
+    padding: 1rem;
+    padding-left: 75px;
+    font-weight: 100;
+    overflow: hidden;
+  }
+}

@@ -1,8 +1,16 @@
 import React from "react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectCheckEmailMessage, setCheckEmailMessage, setLoggedIn} from "../store/slices/signSlice";
-import { browserLocalPersistence, getAuth, setPersistence, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  selectCheckEmailMessage,
+  setCheckEmailMessage,
+} from "../store/slices/signSlice";
+import {
+  browserLocalPersistence,
+  getAuth,
+  setPersistence,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import logo from "../images/1chatlogo.png";
 
@@ -10,7 +18,7 @@ function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const checkEmailMessage = useSelector(selectCheckEmailMessage);
   const navigate = useNavigate();
@@ -25,22 +33,25 @@ function SignIn() {
       if (user && !user.emailVerified) {
         console.error(
           "Email not verified. Please check your email for a verification link."
-          );
-          return;
-        }
-        dispatch(setLoggedIn(true));
-        console.log("Logged in successfully");
-        navigate("/app");
+        );
+        return;
+      }
+      console.log("Logged in successfully");
+      navigate("/app");
     } catch (error: any) {
       switch (error.code) {
         case "auth/invalid-email":
           console.error("Invalid email. Please enter a valid email.");
           break;
         case "auth/user-not-found":
-          console.error("User not found. Please check your email and password.");
+          console.error(
+            "User not found. Please check your email and password."
+          );
           break;
         case "auth/wrong-password":
-          console.error("Wrong password. Please check your email and password.");
+          console.error(
+            "Wrong password. Please check your email and password."
+          );
           break;
         default:
           console.error("Login error:", error);
@@ -57,12 +68,12 @@ function SignIn() {
 
   const handleChangeForm = () => {
     navigate("/signup");
-    dispatch(setCheckEmailMessage(false))
+    dispatch(setCheckEmailMessage(false));
   };
 
   const handleForgotPassword = () => {
     navigate("/forgotpassword");
-    dispatch(setCheckEmailMessage(false))
+    dispatch(setCheckEmailMessage(false));
   };
 
   return (
@@ -97,8 +108,9 @@ function SignIn() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="sign-in__input"
-        /> 
-        <button onClick={handleLogin}></button> {/* Fix for submitting forgot password button instead of login one since type="submit" didn't want to cooperate*/}
+        />
+        <button onClick={handleLogin}></button>{" "}
+        {/* Fix for submitting forgot password button instead of login one since type="submit" didn't want to cooperate*/}
         <button
           className="sign-in__forgot-password"
           onClick={handleForgotPassword}

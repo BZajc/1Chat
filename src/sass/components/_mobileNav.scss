@@ -1,11 +1,14 @@
 .mobile-nav {
+  position: absolute;
+  left: 0;
+  top: 0;
   height: 100vh;
   overflow-y: auto;
   background-color: $black;
   width: 250px;
   color: $white;
   transition: width 0.3s;
-  border-radius: 8px;
+  border-radius: 0 8px 8px 0;
 
   &__logo {
     height: 70px;

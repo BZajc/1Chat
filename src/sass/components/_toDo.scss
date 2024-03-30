@@ -1,0 +1,42 @@
+.todo {
+  display: flex;
+  background-color: $darkBlue;
+  color: $white;
+  min-height: 100vh;
+  &__box {
+    padding: 1rem;
+    padding-left: 75px;
+    font-weight: 100;
+    overflow: hidden;
+  }
+
+  &__h2,
+  &__h3 {
+    width: 100vw;
+    border-bottom: 1px solid $white;
+    font-size: 2rem;
+  }
+
+  &__sub-h2-text {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  &__h3 {
+    font-size: 1.75rem;
+    margin-top: 2rem;
+  }
+
+  &__list {
+    list-style: none;
+  }
+
+  &__item {
+    font-size: 1.5rem;
+    padding-top: 0.5rem;
+  }
+
+  &__h2, &__h3, &__sub-h2-text, &__list, &__item {
+    padding-left: 0.35rem;
+  }
+}

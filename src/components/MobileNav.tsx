@@ -1,4 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectMiniNav, setMiniNav } from "../store/slices/navSlice";
 import logo from "../images/1chatlogo.png";
 import {
   FaGithub,
@@ -16,26 +18,12 @@ import {
   FaDoorOpen,
   FaCode,
 } from "react-icons/fa6";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectLoggedIn, setLoggedIn } from "../store/slices/signSlice";
-import { useDispatch } from "react-redux";
 
 function MobileNav() {
-  const [miniNav, setMiniNav] = useState(false);
-  const loggedIn = useSelector(selectLoggedIn);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    console.log("Logged in:", loggedIn);
-  }, [loggedIn]);
-
-  const handleLogoutClick = () => {
-    dispatch(setLoggedIn(false));
-    navigate("/signin");
-  };
+  const miniNav = useSelector(selectMiniNav); 
+  const navigate = useNavigate();
 
   return (
     <div className={`mobile-nav ${miniNav ? "mobile-nav--mini" : ""}`}>
@@ -58,7 +46,7 @@ function MobileNav() {
             <button
               className="mobile-nav__nav-button mobile-nav__button"
               onClick={() => {
-                setMiniNav(!miniNav);
+                dispatch(setMiniNav(!miniNav));
               }}
             >
               {miniNav ? (
@@ -71,7 +59,7 @@ function MobileNav() {
           <li className="mobile-nav__item">
             <button
               className="mobile-nav__option-button"
-              onClick={() => navigate("/app/chat")}
+              onClick={() => navigate("/app/todo")}
             >
               <FaCode className="mobile-nav__option-icon" />
               <p className="mobile-nav__option-name">To do</p>
@@ -149,7 +137,7 @@ function MobileNav() {
           <li className="mobile-nav__item">
             <button
               className="mobile-nav__option-button mobile-nav__option-button--logout"
-              onClick={handleLogoutClick}
+              onClick={() => navigate("/signin")}
             >
               <FaDoorClosed className="mobile-nav__option-icon mobile-nav__option-icon--closed" />
               <FaDoorOpen className="mobile-nav__option-icon mobile-nav__option-icon--open" />
