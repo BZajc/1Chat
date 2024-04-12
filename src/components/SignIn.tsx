@@ -37,6 +37,7 @@ function SignIn() {
         return;
       }
       console.log("Logged in successfully");
+      console.log(user);
       navigate("/app");
     } catch (error: any) {
       switch (error.code) {
@@ -110,7 +111,6 @@ function SignIn() {
           className="sign-in__input"
         />
         <button onClick={handleLogin}></button>{" "}
-        {/* Fix for submitting forgot password button instead of login one since type="submit" didn't want to cooperate*/}
         <button
           className="sign-in__forgot-password"
           onClick={handleForgotPassword}

@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectMiniNav, setMiniNav } from "../store/slices/navSlice";
 import logo from "../images/1chatlogo.png";
@@ -19,11 +20,33 @@ import {
   FaCode,
 } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { signOut, getAuth } from "firebase/auth";
 
 function MobileNav() {
   const dispatch = useDispatch();
-  const miniNav = useSelector(selectMiniNav); 
+  const miniNav = useSelector(selectMiniNav);
   const navigate = useNavigate();
+
+  // If user is not logged in redirect to signin page
+  useEffect(() => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    console.log(user);
+    if (user === null) {
+      navigate("/signin");
+    }
+  }, []);
+
+  const handleLogout = () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        navigate("/signin");
+      })
+      .catch((error) => {
+        console.log("Error signing out:", error);
+      });
+  };
 
   return (
     <div className={`mobile-nav ${miniNav ? "mobile-nav--mini" : ""}`}>
@@ -137,7 +160,7 @@ function MobileNav() {
           <li className="mobile-nav__item">
             <button
               className="mobile-nav__option-button mobile-nav__option-button--logout"
-              onClick={() => navigate("/signin")}
+              onClick={handleLogout}
             >
               <FaDoorClosed className="mobile-nav__option-icon mobile-nav__option-icon--closed" />
               <FaDoorOpen className="mobile-nav__option-icon mobile-nav__option-icon--open" />

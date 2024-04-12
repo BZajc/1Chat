@@ -4,16 +4,7 @@
 
 1Chat is a real-time chat application designed to connect users randomly for engaging conversations. With 1Chat, users can experience the excitement of meeting new people from around the world in a safe and moderated environment.
 
-
 ## Technologies Used
-
-1Chat is built using the following technologies:
-
-React (with Redux): A JavaScript library for building user interfaces, used for creating the frontend of the application. Redux is utilized for managing application state.
-
-TypeScript: A statically typed superset of JavaScript that enhances code quality and developer productivity.
-
-Firebase: A platform provided by Google for developing mobile and web applications. Firebase services are used for authentication, database management, and hosting.
 
 1Chat is built using the following technologies:
 
@@ -42,12 +33,14 @@ Users can view statistics related to their activity within the application, such
 ## Future Implementations
 
 Tag-based User Search: A feature allowing users to search for others based on tags represented by icons. Users can select up to three icons that represent the type of person they want to connect with, increasing their chances of matching with users who have similar tags.
-    
+
 Other planned features can be found in the "todo" section within the application.
 
 ## Deployment
 
 1Chat is hosted on Netlify and can be accessed at [https://1chat-bzajc.netlify.app/](https://1chat-bzajc.netlify.app/)
+
+Important: When refreshing the page on Netlify or manually changing the URL, an error message "Page not found" occurs. This happens due to how Netlify works and is not caused by any bugs in the code.
 
 ## Local Setup
 

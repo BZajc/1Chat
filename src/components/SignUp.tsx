@@ -3,6 +3,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   sendEmailVerification,
+  updateProfile,
 } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 import { Firestore } from "firebase/firestore";
@@ -22,6 +23,7 @@ function SignUp({ db }: SignUpProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [username, setUsername] = useState("");
 
   const dispatch = useDispatch();
   const registerMessage = useSelector(selectRegisterMessage);
@@ -45,15 +47,19 @@ function SignUp({ db }: SignUpProps) {
         email,
         password
       );
-      const user = userCredential.user;
 
+      const user = userCredential.user;
+      await updateProfile(user, { displayName: username });
+      
       const usersCollection = collection(db, "users");
+
       await addDoc(usersCollection, { email, password });
-      await sendEmailVerification(user);
       console.log("Account created. Check your email.");
+      
       dispatch(setCheckEmailMessage(true));
       dispatch(setRegisterMessage(""));
       navigate("/signin");
+
     } catch (error: any) {
       if (error.code === "auth/invalid-email") {
         dispatch(
@@ -92,6 +98,17 @@ function SignUp({ db }: SignUpProps) {
       <div className="sign-up__overflow"></div>
       <form className="sign-up__form" onSubmit={handleSubmit}>
         <h2 className="sign-up__h2">Create Account</h2>
+        <label htmlFor="username" className="sign-up__label">
+          Username
+        </label>
+        <input
+          type="text"
+          placeholder="Username"
+          id="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          className="sign-up__input"
+        />
         <label htmlFor="email" className="sign-up__label">
           Email
         </label>

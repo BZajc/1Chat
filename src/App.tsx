@@ -57,7 +57,7 @@ function App() {
           {/* Main Content */}
           <Route path="/app" element={<><MobileNav /><Outlet /></>}>
             <Route path="todo" element={<ToDo />} />
-            <Route path="chat" element={<Chat />} />
+            <Route path="chat" element={<Chat db={db}/>} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="profile" element={<Profile />} />
             <Route path="history" element={<ChatHistory />} />

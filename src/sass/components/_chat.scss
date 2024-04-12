@@ -9,4 +9,9 @@
     font-weight: 100;
     overflow: hidden;
   }
+  &__start-button {
+    color: $white;
+    border: 1px solid $white;
+    padding: 1rem;
+  }
 }
