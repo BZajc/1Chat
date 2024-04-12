@@ -1,8 +1,9 @@
-# 1Chat Documantation
+### You should keep in mind that the application is not yet completed, and I am still working on it, so certain features may be missing or it may behave unexpectedly.
+
+# 1Chat Documentation
 
 1Chat is a real-time chat application designed to connect users randomly for engaging conversations. With 1Chat, users can experience the excitement of meeting new people from around the world in a safe and moderated environment.
 
-### You should keep in mind that the application is not yet completed, and I am still working on it, so certain features may be missing or it may behave unexpectedly.
 
 ## Technologies Used
 
