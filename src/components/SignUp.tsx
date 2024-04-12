@@ -50,10 +50,11 @@ function SignUp({ db }: SignUpProps) {
 
       const user = userCredential.user;
       await updateProfile(user, { displayName: username });
-      
       const usersCollection = collection(db, "users");
 
       await addDoc(usersCollection, { email, password });
+      await sendEmailVerification(user);
+
       console.log("Account created. Check your email.");
       
       dispatch(setCheckEmailMessage(true));

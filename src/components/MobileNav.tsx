@@ -35,7 +35,7 @@ function MobileNav() {
     if (user === null) {
       navigate("/signin");
     }
-  }, []);
+  }, [navigate]);
 
   const handleLogout = () => {
     const auth = getAuth();
