@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# 1Chat Documantation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1Chat is a real-time chat application designed to connect users randomly for engaging conversations. With 1Chat, users can experience the excitement of meeting new people from around the world in a safe and moderated environment.
 
-## Available Scripts
+### You should keep in mind that the application is not yet completed, and I am still working on it, so certain features may be missing or it may behave unexpectedly.
 
-In the project directory, you can run:
+## Technologies Used
 
-### `npm start`
+1Chat is built using the following technologies:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+React (with Redux): A JavaScript library for building user interfaces, used for creating the frontend of the application. Redux is utilized for managing application state.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+TypeScript: A statically typed superset of JavaScript that enhances code quality and developer productivity.
 
-### `npm test`
+Firebase: A platform provided by Google for developing mobile and web applications. Firebase services are used for authentication, database management, and hosting.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Dziękuję za udostępnienie tych informacji. Teraz mogę uzupełnić dokumentację o sekcję dotyczącą technologii użytych w aplikacji oraz informacje dotyczące konfiguracji lokalnego środowiska.
+Technologies Used
 
-### `npm run build`
+1Chat is built using the following technologies:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+React (with Redux): A JavaScript library for building user interfaces, used for creating the frontend of the application. Redux is utilized for managing application state.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+TypeScript: A statically typed superset of JavaScript that enhances code quality and developer productivity.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Firebase: A platform provided by Google for developing mobile and web applications. Firebase services are used for authentication, database management, and hosting.
 
-### `npm run eject`
+## Application Features
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### User Account Management
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Users can create an account and verify it via email.
+Once verified, users can customize their profiles by adding descriptions, photos, or videos to better represent themselves.
+They can control the visibility of their content, choosing whether only friends or all users can see their information.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Friend Management
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+As mentioned above - users can add other users as friends to continue conversations with them.
 
-## Learn More
+### User Statistics
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Users can view statistics related to their activity within the application, such as the number of messages sent in a given month or the total time spent in the app and more.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Future Implementations
 
-### Code Splitting
+Tag-based User Search: A feature allowing users to search for others based on tags represented by icons. Users can select up to three icons that represent the type of person they want to connect with, increasing their chances of matching with users who have similar tags.
+    
+Other planned features can be found in the "todo" section within the application.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Deployment
 
-### Analyzing the Bundle Size
+1Chat is hosted on Netlify and can be accessed at [https://1chat-bzajc.netlify.app/](https://1chat-bzajc.netlify.app/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Local Setup
 
-### Making a Progressive Web App
+To run the application locally on your device, follow these steps:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1. Create a .env file in the root folder of the project.
+2. Add your Firebase configuration data to the .env file in the following format:
 
-### Advanced Configuration
+```
+REACT_APP_FIREBASE_API_KEY=YOUR_API_KEY
+REACT_APP_FIREBASE_AUTH_DOMAIN=YOUR_AUTH_DOMAIN
+REACT_APP_FIREBASE_PROJECT_ID=YOUR_PROJECT_ID
+REACT_APP_FIREBASE_STORAGE_BUCKET=YOUR_STORAGE_BUCKET
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=YOUR_MESSAGING_SENDER_ID
+REACT_APP_FIREBASE_APP_ID=YOUR_APP_ID
+REACT_APP_FIREBASE_MEASUREMENT_ID=YOUR_MEASUREMENT_ID
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Replace YOUR_API_KEY, YOUR_AUTH_DOMAIN, and other placeholders with your actual Firebase configuration data.
