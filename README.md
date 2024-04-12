@@ -15,9 +15,6 @@ TypeScript: A statically typed superset of JavaScript that enhances code quality
 
 Firebase: A platform provided by Google for developing mobile and web applications. Firebase services are used for authentication, database management, and hosting.
 
-Dziękuję za udostępnienie tych informacji. Teraz mogę uzupełnić dokumentację o sekcję dotyczącą technologii użytych w aplikacji oraz informacje dotyczące konfiguracji lokalnego środowiska.
-Technologies Used
-
 1Chat is built using the following technologies:
 
 React (with Redux): A JavaScript library for building user interfaces, used for creating the frontend of the application. Redux is utilized for managing application state.
