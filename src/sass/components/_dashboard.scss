@@ -1,0 +1,39 @@
+.dashboard {
+  &__box {
+    padding-left: 85px;
+    padding-right: 10px;
+  }
+  &__h2 {
+    color: $yellow;
+    font-size: 2rem;
+    margin-top: 1rem;
+    text-align: center;
+  }
+  &__h2-subtext {
+    color: $yellow;
+    font-size: 1.25rem;
+    text-align: center;
+  }
+  &__ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    list-style: none;
+  }
+  &__item {
+    padding: 0.25rem;
+    margin: 0.5rem;
+  }
+  &__title-box {
+    padding: 1rem;
+    font-size: 2rem;
+    width: 270px;
+    color: $white;
+    border-radius: 8px;
+    border: 1px solid $white;
+    background-color: $darkBlue;
+    white-space: nowrap;
+    text-align: center;
+  }
+}

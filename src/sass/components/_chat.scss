@@ -1,17 +1,179 @@
 .chat {
   display: flex;
-  background-color: $darkBlue;
+  background-image: url("../../images/chatBg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: $white;
   min-height: 100vh;
-  &__box {
+  &__box,
+  &__connected-box {
     padding: 1rem;
-    padding-left: 75px;
+    padding-left: 85px;
     font-weight: 100;
     overflow: hidden;
+    width: 100%;
   }
   &__start-button {
     color: $white;
     border: 1px solid $white;
+    padding: 1rem 4rem;
+    background-color: $blue;
+    font-size: 1.5rem;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $darkBlue;
+    }
+  }
+  &__find-user-box {
+    padding-right: 75px;
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  &__find-user-text {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: $yellow;
+  }
+  &__loading-icon {
+    width: 100px;
+    z-index: 1;
+  }
+  &__connected-box {
+    padding: 0;
+    font-weight: 100;
+    overflow: hidden;
+    z-index: 3;
+  }
+  &__connected-user-info {
+    position: fixed;
+    width: calc(100% - 95px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $black;
+    border-radius: 8px;
+  }
+  &__image-and-name-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__user-image {
+    width: 40px;
+    border-radius: 8px;
+    margin-left: 6px;
+  }
+  &__user-name {
+    color: $yellow;
+    font-size: 1.5rem;
     padding: 1rem;
+  }
+  &__user-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+    color: $white;
+    font-size: 4rem;
+    transition: transform 0.3s;
+    &:hover {
+      color: $yellow;
+      transform: scale(1.1);
+    }
+  }
+  &__connected-buttons-box {
+    position: fixed;
+    top: 7.5rem;
+    width: calc(100% - 95px);
+    display: none;
+    align-items: center;
+    justify-content: space-evenly;
+    list-style: none;
+    background-color: red;
+    border-radius: 8px;
+    background-color: $black;
+    z-index: 3;
+  }
+
+  &__connected-button {
+    &:hover .chat__connected-button-icon {
+      color: $yellow;
+    }
+  }
+
+  &__connected-button-icon {
+    font-size: 2.5rem;
+    padding: 0.25rem;
+    &--1 {
+      color: $blue;
+    }
+    &--2 {
+      color: $green;
+    }
+    &--3 {
+      color: $red;
+    }
+    &--4 {
+      color: $blue;
+    }
+    &--5 {
+      color: $blue;
+    }
+  }
+
+  &__connected-buttons-box-active {
+    display: flex;
+  }
+
+  &__input-box {
+    position: absolute;
+    display: flex;
+    align-items: center;justify-content: center;
+    left: 0;
+    bottom: 0;
+    background-color: $black;
+    width: 100%;
+    box-shadow: 0px 5px 20px 20px $black;
+  }
+
+  &__input {
+    margin: 10px 0 10px 85px;
+    padding: 1rem;
+    width: calc(100% - 95px);
+    border-radius: 8px;
+    border: none;
+    color: $black;
+    background-color: $white;
+    &:focus {
+      outline-style: solid;
+      outline-width: 1px;
+      outline-color: $blue;
+    }
+  }
+
+  &__send-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+
+    &:hover .chat__send-icon {
+      color: $yellow;
+      transform: scale(1.2);
+    }
+  }
+
+  &__send-icon {
+    color: $white;
+    padding: 0.25rem;
+    font-size: 2.5rem;
+    transition: transform 0.3s, color 0.3s;
   }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectMiniNav, setMiniNav } from "../store/slices/navSlice";
 import logo from "../images/1chatlogo.png";
@@ -27,15 +27,14 @@ function MobileNav() {
   const miniNav = useSelector(selectMiniNav);
   const navigate = useNavigate();
 
-  // If user is not logged in redirect to signin page
-  useEffect(() => {
-    const auth = getAuth();
-    const user = auth.currentUser;
-    console.log(user);
-    if (user === null) {
-      navigate("/signin");
-    }
-  }, [navigate]);
+  // // If user is not logged in redirect to signin page
+  // useEffect(() => {
+  //   const auth = getAuth();
+  //   const user = auth.currentUser;
+  //   if (user === null) {
+  //     navigate("/signin");
+  //   }
+  // }, [navigate]);
 
   const handleLogout = () => {
     const auth = getAuth();

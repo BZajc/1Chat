@@ -37,7 +37,6 @@ function SignIn() {
         return;
       }
       console.log("Logged in successfully");
-      console.log(user);
       navigate("/app");
     } catch (error: any) {
       switch (error.code) {

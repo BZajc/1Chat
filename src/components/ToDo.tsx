@@ -20,7 +20,6 @@ function ToDo() {
           <li className="todo__item">Keeping user logged in</li>
           <li className="todo__item">Loading icon</li>
           <li className="todo__item">Code optimization</li>
-          <li className="todo__item">Keeping user logged in</li>
           <li className="todo__item">
             Changing email verification from firebase to custom one
           </li>
@@ -35,12 +34,15 @@ function ToDo() {
           <li className="todo__item">
             Improve database security rules
           </li>
+          <li className="todo__item">
+            Adding additional security measures like reCAPTCHA or phone verification during registration
+          </li>
+          <li className="todo__item">
+            Optimization working with the database
+          </li>
         </ul>
         <h3 className="todo__h3">Optional</h3>
         <ul className="todo__list">
-          <li className="todo__item">
-            Improving UI with Three.js or Lottie animations
-          </li>
           <li className="todo__item">Creating nav for desktop</li>
         </ul>
       </div>

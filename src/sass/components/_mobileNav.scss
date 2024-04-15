@@ -1,5 +1,5 @@
 .mobile-nav {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   height: 100vh;
@@ -9,6 +9,7 @@
   color: $white;
   transition: width 0.3s;
   border-radius: 0 8px 8px 0;
+  z-index: 2;
 
   &__logo {
     height: 70px;

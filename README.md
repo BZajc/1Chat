@@ -40,8 +40,6 @@ Other planned features can be found in the "todo" section within the application
 
 1Chat is hosted on Netlify and can be accessed at [https://1chat-bzajc.netlify.app/](https://1chat-bzajc.netlify.app/)
 
-Important: When refreshing the page on Netlify or manually changing the URL, an error message "Page not found" occurs. This happens due to how Netlify works and is not caused by any bugs in the code.
-
 ## Local Setup
 
 To run the application locally on your device, follow these steps:

@@ -49,18 +49,18 @@ function SignUp({ db }: SignUpProps) {
       );
 
       const user = userCredential.user;
+      const displayName = username;
       await updateProfile(user, { displayName: username });
       const usersCollection = collection(db, "users");
 
-      await addDoc(usersCollection, { email, password });
+      await addDoc(usersCollection, { email, password, displayName });
       await sendEmailVerification(user);
 
       console.log("Account created. Check your email.");
-      
+
       dispatch(setCheckEmailMessage(true));
       dispatch(setRegisterMessage(""));
       navigate("/signin");
-
     } catch (error: any) {
       if (error.code === "auth/invalid-email") {
         dispatch(
@@ -156,6 +156,10 @@ function SignUp({ db }: SignUpProps) {
             Log In here
           </button>
         </div>
+        <p>Important:</p>
+        <p>1. Register form is fully functional but if you don't want to create an account you can use this one: bbbb1221@wp.pl admin1</p>
+        <br />
+        <p>2. You should keep in mind that the application is not yet completed, and I am still working on it, so certain features may be missing or it may behave unexpectedly.</p>
       </form>
     </div>
   );
