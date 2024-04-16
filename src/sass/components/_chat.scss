@@ -4,6 +4,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
   color: $white;
   min-height: 100vh;
   &__box,
@@ -111,21 +112,8 @@
   &__connected-button-icon {
     font-size: 2.5rem;
     padding: 0.25rem;
-    &--1 {
-      color: $blue;
-    }
-    &--2 {
-      color: $green;
-    }
-    &--3 {
-      color: $red;
-    }
-    &--4 {
-      color: $blue;
-    }
-    &--5 {
-      color: $blue;
-    }
+    transition: color 0.3s;
+    color: $blue;
   }
 
   &__connected-buttons-box-active {
@@ -133,9 +121,10 @@
   }
 
   &__input-box {
-    position: absolute;
+    position: fixed;
     display: flex;
-    align-items: center;justify-content: center;
+    align-items: center;
+    justify-content: center;
     left: 0;
     bottom: 0;
     background-color: $black;
@@ -158,7 +147,8 @@
     }
   }
 
-  &__send-button {
+  &__send-button,
+  &__more-button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -175,5 +165,106 @@
     padding: 0.25rem;
     font-size: 2.5rem;
     transition: transform 0.3s, color 0.3s;
+  }
+
+  &__more-button {
+    color: $white;
+    &:hover .chat__more-icon {
+      transform: scale(1.2);
+      color: $yellow;
+    }
+  }
+
+  &__more-icon {
+    font-size: 2.5rem;
+    transition: transform 0.3s;
+  }
+
+  &__successfully-connected {
+    margin-top: 6rem;
+    padding: 0.5rem;
+  }
+
+  &__yellow-text {
+    color: $yellow;
+  }
+
+  &__connected-left-message,
+  &__connected-right-message {
+    display: inline-block;
+    margin: 0.5rem 0;
+    font-size: 1.25rem;
+    border-radius: 8px;
+    padding: 1rem;
+    max-width: 90%;
+  }
+
+  &__messages-box {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__connected-left-message {
+    background-color: $white;
+    color: $darkBlue;
+  }
+
+  &__connected-right-message {
+    background-color: $blue;
+    color: $white;
+    word-break: break-all;
+    margin-left: auto;
+  }
+
+  &__messages-fix {
+    margin-top: 7rem;
+  }
+
+  &__connected-more-box {
+    display: none;
+    position: fixed;
+    bottom: 7.5rem;
+    width: calc(100% - 95px);
+    align-items: center;
+    list-style: none;
+    border-radius: 8px;
+    background-color: $black;
+    z-index: 3;
+  }
+
+  &__connected-more-box-active {
+    display: block;
+  }
+
+  &__connected-more-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    list-style: none;
+  }
+
+  &__connected-leave-button,
+  &__connected-emoji-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $white;
+    padding: 0.5rem;
+    margin: 0 0.5rem;
+    &:hover {
+      color: $red;
+    }
+  }
+
+  &__connected-leave-icon {
+    color: $red;
+    margin: 0.5rem;
+  }
+
+  &__connected-emoji-button {
+    font-size: 1.75rem;
+    &:hover {
+      color: $yellow;
+    }
   }
 }
