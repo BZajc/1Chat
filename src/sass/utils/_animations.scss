@@ -22,7 +22,21 @@
     to {
       display: none;
       opacity: 0;
-      transform: translatex(-100%);
+      transform: translateX(-100%);
+    }
+  }
+}
+
+@mixin chatMessageAppear {
+  animation: chatMessageAppear 0.3s ease-in-out forwards;
+  @keyframes chatMessageAppear {
+    from {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0%);
     }
   }
 }

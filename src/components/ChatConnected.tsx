@@ -76,6 +76,8 @@ function ChatConnected() {
   const onLeaveChat = () => {
     dispatch(setConnected(false));
     dispatch(removeMessages());
+    dispatch(setUserImage(""));
+    dispatch(setUserName(""));
   }
 
   return (

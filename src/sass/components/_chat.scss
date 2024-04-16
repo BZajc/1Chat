@@ -60,6 +60,7 @@
     justify-content: space-between;
     background-color: $black;
     border-radius: 8px;
+    z-index: 3;
   }
   &__image-and-name-box {
     display: flex;
@@ -197,6 +198,7 @@
     border-radius: 8px;
     padding: 1rem;
     max-width: 90%;
+    @include chatMessageAppear;
   }
 
   &__messages-box {
