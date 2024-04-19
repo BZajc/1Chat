@@ -37,7 +37,7 @@ function SignIn() {
         return;
       }
       console.log("Logged in successfully");
-      navigate("/app");
+      navigate("/app/chat");
     } catch (error: any) {
       switch (error.code) {
         case "auth/invalid-email":

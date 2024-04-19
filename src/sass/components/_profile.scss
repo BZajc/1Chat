@@ -1,0 +1,91 @@
+.profile {
+  min-height: 100vh;
+  background-color: $black;
+  &__box {
+    padding: 1rem;
+    padding-left: 85px;
+    font-weight: 100;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  &__image {
+    display: block;
+    margin: 0 auto;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+
+  &__username {
+    color: $white;
+    text-align: center;
+    font-size: 1.75rem;
+    padding: 1rem;
+    cursor: pointer;
+    font-weight: 300;
+  }
+
+  &__category-buttons-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  &__category-button {
+    color: rgb(180, 180, 180);
+    padding: 1rem 2rem;
+    transition: color 0.3s;
+    &:hover {
+      color: $white;
+    }
+    &--active {
+      color: $blue;
+    }
+  }
+
+  &__info-box {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(2, 115px);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 1rem;
+    margin: 1rem;
+  }
+
+  &__info-tile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background-color: $white;
+    width: 115px;
+    height: 50px;
+    font-size: 1.25rem;
+    font-weight: 300;
+    box-shadow: 0px 0px 3px 3px rgba(238, 239, 242, 0.3);
+  }
+
+  &__info-icon {
+    margin-right: auto;
+    margin-left: 1rem;
+    font-size: 2rem;
+  }
+
+  &__tile-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-right: auto;
+
+    &--messages {
+      font-size: 1.1rem;
+    }
+  }
+
+  &__tile-name {
+    white-space: nowrap;
+    font-weight: 700;
+  }
+}

@@ -1,10 +1,6 @@
 .chat {
   display: flex;
-  background-image: url("../../images/chatBg.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
+  @include backgroundStyles("../../images/chatBg.jpg");
   color: $white;
   min-height: 100vh;
   &__box,

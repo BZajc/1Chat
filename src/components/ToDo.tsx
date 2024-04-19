@@ -38,6 +38,9 @@ function ToDo() {
             Adding additional security measures like reCAPTCHA or phone verification during registration
           </li>
           <li className="todo__item">
+            Displaying more info during the chat like user's profile, tags, time of the message etc.
+          </li>
+          <li className="todo__item">
             Optimization working with the database
           </li>
         </ul>

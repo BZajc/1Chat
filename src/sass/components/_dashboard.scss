@@ -1,39 +1,187 @@
 .dashboard {
+  min-height: 100vh;
+  padding-top: 1rem;
+  background-color: $black;
   &__box {
     padding-left: 85px;
     padding-right: 10px;
   }
   &__h2 {
-    color: $yellow;
+    color: $black;
     font-size: 2rem;
-    margin-top: 1rem;
     text-align: center;
   }
   &__h2-subtext {
-    color: $yellow;
+    color: $black;
     font-size: 1.25rem;
     text-align: center;
   }
-  &__ul {
+  &__header-box {
+    margin: 0rem 10px;
+    padding: 10px;
+    border-radius: 8px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(172, 172, 172, 1) 89%,
+      rgb(161, 161, 161) 100%
+    );
+  }
+  &__profile-box,
+  &__activity-box,
+  &__security-box,
+  &__behaviour-box,
+  &__tags-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1rem;
+    margin: 1rem;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(172, 172, 172, 1) 89%,
+      rgb(161, 161, 161) 100%
+    );
+    border-radius: 8px;
+    box-shadow: 0px 0px 3px 1px $white;
+    overflow: hidden;
+    cursor: pointer;
+
+    &:hover .dashboard__profile-overlay {
+      background-color: rgba(0, 0, 0, 0.75);
+      opacity: 1;
+    }
+  }
+
+  &__profile-box {
+    background: $blue;
+    box-shadow: none;
+  }
+
+  &__box-info {
+    color: $white;
+    padding-bottom: 2rem;
+  }
+  &__profile-image {
+    border: 1px solid $black;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__profile-name {
+    font-size: 1.5rem;
+    color: $black;
+    word-break: break-all;
+    max-width: 50%;
+    background-color: $darkBlue;
+    border-radius: 8px;
+    padding: 1rem;
+    color: $white;
+  }
+  &__profile-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    color: $white;
+    font-size: 1.25rem;
+    transition: background-color 0.3s, opacity 0.3s;
+  }
+  &__bg-icon {
+    position: absolute;
+    font-size: 8rem;
+    color: rgba(189, 141, 11, 0.5);
+    right: -5%;
+    bottom: -5%;
+  }
+  &__box-name {
+    padding-left: 10px;
+    color: $white;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  &__activity-box,
+  &__security-box,
+  &__behaviour-box {
+    cursor: default;
+  }
+
+  &__tags-box {
+    background: linear-gradient(135deg, rgba(254,0,255,0.5) 0%, rgba(116,0,255,1) 100%); 
+    box-shadow: none;
+  }
+
+  &__activity-list,
+  &__security-list,
+  &__behaviour-list,
+  &__tags-list {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     list-style: none;
+    width: 100%;
+    z-index: 1;
   }
-  &__item {
-    padding: 0.25rem;
-    margin: 0.5rem;
-  }
-  &__title-box {
-    padding: 1rem;
-    font-size: 2rem;
-    width: 270px;
-    color: $white;
+
+  &__activity-item,
+  &__security-item,
+  &__behaviour-item,
+  &__tags-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     border-radius: 8px;
-    border: 1px solid $white;
     background-color: $darkBlue;
-    white-space: nowrap;
-    text-align: center;
+    font-size: 1.25rem;
+    padding: 1rem;
+    color: $white;
+    margin: 1rem 0;
+    width: 100%;
+  }
+
+  &__tags-item {
+    margin: 0;
+    background-color: transparent;
+    justify-content: space-evenly;
+  }
+
+  &__tag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 8px 3px $black;
+    border-radius: 8px;
+    width: 50px;
+    height: 50px;
+    font-size: 3rem;
+    &:nth-child(1) {
+      background: linear-gradient(
+        135deg,
+        rgba(255, 142, 0, 1) 0%,
+        rgba(255, 4, 91, 1) 100%
+      );
+    }
+    &:nth-child(2) {
+      background: linear-gradient(
+        135deg,
+        rgba(0, 255, 189, 1) 0%,
+        rgba(83, 4, 255, 1) 100%
+      );
+    }
+    &:nth-child(3) {
+      background: linear-gradient(135deg, rgba(120,0,255,1) 0%, rgba(45,4,255,1) 100%); 
+    }
   }
 }
