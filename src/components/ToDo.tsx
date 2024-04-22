@@ -43,6 +43,12 @@ function ToDo() {
           <li className="todo__item">
             Optimization working with the database
           </li>
+          <li className="todo__item">
+            Opening new menu after clicking on the message in the profile tab to display the chat or set message as a read.
+          </li>
+          <li className="todo__item">
+            Adding new tab to profile tab {"Activity"}
+          </li>
         </ul>
         <h3 className="todo__h3">Optional</h3>
         <ul className="todo__list">

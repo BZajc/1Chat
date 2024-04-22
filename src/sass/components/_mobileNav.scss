@@ -7,10 +7,9 @@
   background-color: $black;
   width: 250px;
   color: $white;
-  transition: width 0.3s;
+  transition: width 0.3s, background-color 0.3s;
   border-radius: 0 8px 8px 0;
   z-index: 5;
-  border-right: 1px solid $darkBlue;
 
   &__logo {
     height: 70px;
@@ -112,6 +111,7 @@
   }
 
   &--mini {
+    background-color: transparent;
     width: 75px;
     .mobile-nav {
       &__option-name,
