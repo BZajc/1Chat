@@ -1,4 +1,3 @@
-import { selectUserImage } from "./chatSlice";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface ProfileState {
