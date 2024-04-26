@@ -21,8 +21,11 @@ import {
   addMessage,
   selectMessages,
   setConnected,
-  removeMessages
+  removeMessages,
+  selectUserId,
+  setUserId,
 } from "../store/slices/chatSlice";
+import { setChatHistory } from "../store/slices/chatHistorySlice";
 
 function ChatConnected() {
   const [userButtons, showUserButtons] = useState(false);
@@ -31,6 +34,7 @@ function ChatConnected() {
   const dispatch = useDispatch();
   const userImage = useSelector(selectUserImage);
   const userName = useSelector(selectUserName);
+  const userId = useSelector(selectUserId);
   const messages = useSelector(selectMessages);
 
   useEffect(() => {
@@ -40,21 +44,52 @@ function ChatConnected() {
     if (!userName) {
       dispatch(setUserName(faker.internet.userName()));
     }
-  }, [dispatch, userImage, userName]);
+    if (!userId) {
+      const randomId = new Date().getTime();
+      dispatch(setUserId(randomId));
+    }
+  }, [dispatch, userImage, userName, userId]);
+
+  useEffect(() => {
+    dispatch(
+      setChatHistory({
+        userImage: userImage || "",
+        userName: userName || "",
+        id: userId || 0,
+        messages,
+      })
+    );
+  }, [userImage, userName, userId, messages, dispatch]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
+  const getCurrentTime = () => {
+    const date = new Date();
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    return `${hours}:${minutes}`;
+  };
+
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    dispatch(
+      addMessage({
+        message: inputValue,
+        type: "right",
+        time: getCurrentTime(),
+        profileImage: "",
+      })
+    );
     setInputValue("");
-    dispatch(addMessage({ message: inputValue, type: "right" }));
     setTimeout(() => {
       dispatch(
         addMessage({
-          message: faker.lorem.words(Math.floor(Math.random() * 13) + 3), //Generate random words between 3 and 15
+          message: faker.lorem.words(Math.floor(Math.random() * 13) + 3).charAt(0).toUpperCase() + faker.lorem.words(Math.floor(Math.random() * 13) + 3).slice(1), // Random message with 3-15 words and first letter capitalized
           type: "left",
+          time: getCurrentTime(),
+          profileImage: userImage || "",
         })
       );
     }, 1000);
@@ -64,6 +99,7 @@ function ChatConnected() {
     return messages.map((message, index) => (
       <div key={index} className={`chat__connected-${message.type}-message`}>
         {message.message}
+        <p className="chat__connected-message-time">{message.time}</p>
       </div>
     ));
   };
@@ -78,7 +114,8 @@ function ChatConnected() {
     dispatch(removeMessages());
     dispatch(setUserImage(""));
     dispatch(setUserName(""));
-  }
+    dispatch(setUserId(0));
+  };
 
   return (
     <div className="chat__connected-box">
@@ -161,7 +198,10 @@ function ChatConnected() {
             </button>
           </li>
           <li className="chat__connected-more-item">
-            <button className="chat__connected-leave-button" onClick={onLeaveChat}>
+            <button
+              className="chat__connected-leave-button"
+              onClick={onLeaveChat}
+            >
               Leave chat
               <FaArrowRightToBracket className="chat__connected-leave-icon" />
             </button>

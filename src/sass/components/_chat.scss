@@ -106,6 +106,23 @@
     }
   }
 
+  &__connected-message-time {
+    position: absolute;
+    bottom: -2.25rem;
+    padding: 0.5rem;
+    white-space: nowrap;
+    color: $white;
+
+    .chat__connected-right-message & {
+      right: 0;
+    }
+
+    .chat__connected-left-message & {
+      left: 0;
+
+    }
+  }
+
   &__connected-button-icon {
     font-size: 2.5rem;
     padding: 0.25rem;
@@ -124,9 +141,9 @@
     justify-content: center;
     left: 0;
     bottom: 0;
-    background-color: $black;
     width: 100%;
     box-shadow: 0px 5px 20px 20px $black;
+    background-color: $black;
   }
 
   &__input {
@@ -189,7 +206,7 @@
   &__connected-left-message,
   &__connected-right-message {
     display: inline-block;
-    margin: 0.5rem 0;
+    margin: 1rem 0;
     font-size: 1.25rem;
     border-radius: 8px;
     padding: 1rem;

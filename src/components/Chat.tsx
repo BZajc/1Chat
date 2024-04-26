@@ -25,7 +25,7 @@ function Chat() {
           dispatch(setConnected(true));
           dispatch(setConnecting(false));
         }
-      }, 4000);
+      }, 100);
     }
     // Clear the timer when the component unmounts
     return () => clearTimeout(timer);

@@ -4,7 +4,7 @@
   overflow: hidden;
 
   &__background {
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     width: 100%;
@@ -94,14 +94,6 @@
         border: 1px solid $black;
       }
     }
-  }
-
-  &__visual-purposes {
-    position: relative;
-    color: $yellow;
-    z-index: 1;
-    padding: 1rem 1rem 1rem 85px;
-    text-align: center;
   }
 
   &__info-icon {

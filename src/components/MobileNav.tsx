@@ -47,6 +47,11 @@ function MobileNav() {
       });
   };
 
+  const handleNavigation = (path: string) => {
+    navigate(path);
+    dispatch(setMiniNav(true));
+  };
+
   return (
     <div className={`mobile-nav ${miniNav ? "mobile-nav--mini" : ""}`}>
       <div className="mobile-nav__top-box">
@@ -81,7 +86,7 @@ function MobileNav() {
           <li className="mobile-nav__item">
             <button
               className="mobile-nav__option-button"
-              onClick={() => navigate("/app/todo")}
+              onClick={() => handleNavigation("/app/todo")}
             >
               <FaCode className="mobile-nav__option-icon" />
               <p className="mobile-nav__option-name">To do</p>
@@ -90,7 +95,7 @@ function MobileNav() {
           <li className="mobile-nav__item">
             <button
               className="mobile-nav__option-button"
-              onClick={() => navigate("/app/chat")}
+              onClick={() => handleNavigation("/app/chat")}
             >
               <FaRegMessage className="mobile-nav__option-icon" />
               <p className="mobile-nav__option-name">Join Chat</p>
@@ -99,7 +104,7 @@ function MobileNav() {
           <li className="mobile-nav__item">
             <button
               className="mobile-nav__option-button"
-              onClick={() => navigate("/app/dashboard")}
+              onClick={() => handleNavigation("/app/dashboard")}
             >
               <FaGrip className="mobile-nav__option-icon" />
               <p className="mobile-nav__option-name">Dashboard</p>
@@ -108,7 +113,7 @@ function MobileNav() {
           <li className="mobile-nav__item">
             <button
               className="mobile-nav__option-button"
-              onClick={() => navigate("/app/profile")}
+              onClick={() => handleNavigation("/app/profile")}
             >
               <FaRegUser className="mobile-nav__option-icon" />
               <p className="mobile-nav__option-name">Profile</p>
@@ -117,7 +122,7 @@ function MobileNav() {
           <li className="mobile-nav__item">
             <button
               className="mobile-nav__option-button"
-              onClick={() => navigate("/app/history")}
+              onClick={() => handleNavigation("/app/history")}
             >
               <FaUsers className="mobile-nav__option-icon" />
               <p className="mobile-nav__option-name">Chat History</p>
@@ -132,7 +137,7 @@ function MobileNav() {
           <li className="mobile-nav__item">
             <button
               className="mobile-nav__option-button"
-              onClick={() => navigate("/app/added")}
+              onClick={() => handleNavigation("/app/added")}
             >
               <FaUserCheck className="mobile-nav__option-icon" />
               <p className="mobile-nav__option-name">Added Users</p>
@@ -141,7 +146,7 @@ function MobileNav() {
           <li className="mobile-nav__item">
             <button
               className="mobile-nav__option-button"
-              onClick={() => navigate("/app/blocked")}
+              onClick={() => handleNavigation("/app/blocked")}
             >
               <FaUserSlash className="mobile-nav__option-icon" />
               <p className="mobile-nav__option-name">Blocked Users</p>
@@ -150,7 +155,7 @@ function MobileNav() {
           <li className="mobile-nav__item">
             <button
               className="mobile-nav__option-button"
-              onClick={() => navigate("/app/settings")}
+              onClick={() => handleNavigation("/app/settings")}
             >
               <FaGear className="mobile-nav__option-icon" />
               <p className="mobile-nav__option-name">Settings</p>

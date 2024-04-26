@@ -1,0 +1,142 @@
+.chat-history {
+  min-height: 100vh;
+  background-color: $black;
+  padding-left: 85px;
+  padding-right: 10px;
+
+  &__input-box {
+    display: flex;
+    flex-direction: column;
+    padding: 4rem 0 2rem;
+  }
+
+  &__input-top {
+    display: flex;
+  }
+
+  &__input {
+    padding: 0.5rem;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid $white;
+    color: $white;
+    outline: none;
+    transition: border 0.3s;
+    &::placeholder {
+      color: $white;
+    }
+
+    &:hover {
+      border-bottom: 1px solid $blue;
+
+      &::placeholder {
+        color: $blue;
+      }
+    }
+
+    &:focus {
+      color: $blue;
+      border-bottom: 1px solid $blue;
+    }
+  }
+
+  &__filter-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 1rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 1rem;
+    outline: none;
+    transition: border 0.3s;
+    &:hover {
+      border: 1px solid $blue;
+
+      .chat-history__filter-icon {
+        color: $blue;
+      }
+    }
+    &:focus {
+        border: 1px solid $blue;
+        .chat-history__filter-icon {
+          color: $blue;
+        }
+    }
+  }
+
+  &__filter-icon {
+    font-size: 2rem;
+    color: $white;
+    transition: color 0.3s;
+  }
+
+  &__filter-type {
+    color: $white;
+    padding-top: 0.5rem;
+    font-size: 1.25rem;
+  }
+  
+  &__messages-box {
+    margin: 2rem auto;
+    background-color: $white;
+    width: 245px;
+    border-radius: 8px;
+  }
+
+  &__messages-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s, color 0.3s, background-color 0.3s;
+    @include chatHistoryFilter;
+    &:hover {
+      transform: scale(1.1);
+      background-color: $blue;
+      color: $white;
+    }
+  }
+
+  &__messages-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 1rem;
+  }
+
+  &__message {
+    font-size: 1.25rem;
+    max-width: 70%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+  }
+
+  &__messages-time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 0.5rem;
+  }
+
+  &__messages-read-icon {
+    margin-left: 0.25rem;
+  }
+
+  &__user-name {
+    color: $black;
+    font-weight: bold;
+  }
+
+  &__user-info-box {
+    flex-direction: column;
+    width: 100%;
+  }
+}
