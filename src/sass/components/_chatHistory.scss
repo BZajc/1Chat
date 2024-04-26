@@ -3,6 +3,7 @@
   background-color: $black;
   padding-left: 85px;
   padding-right: 10px;
+  overflow: hidden;
 
   &__input-box {
     display: flex;
@@ -114,6 +115,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: left;
+    user-select: none;
   }
 
   &__messages-time {
@@ -133,6 +135,7 @@
   &__user-name {
     color: $black;
     font-weight: bold;
+    user-select: none;
   }
 
   &__user-info-box {
