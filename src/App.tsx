@@ -22,6 +22,9 @@ import AddedUsers from "./components/AddedUsers";
 import BlockedUsers from "./components/BlockedUsers";
 import Settings from "./components/Settings";
 import MobileNav from "./components/MobileNav";
+import Popup from "./components/Popup";
+import { useSelector } from "react-redux";
+import { selectPopupVisible } from "./store/slices/popupSlice";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -45,6 +48,7 @@ const AppWrapper = () => {
 };
 
 function App() {
+  const popupVisible = useSelector(selectPopupVisible);
   return (
     <Provider store={store}>
       <Router>
@@ -55,9 +59,18 @@ function App() {
           <Route path="/forgotpassword" element={<ForgotPassword />} />
 
           {/* Main Content */}
-          <Route path="/app" element={<><MobileNav /><Outlet /></>}>
+          <Route
+            path="/app"
+            element={
+              <>
+                <MobileNav />
+                {popupVisible && <Popup />}
+                <Outlet />
+              </>
+            }
+          >
             <Route path="todo" element={<ToDo />} />
-            <Route path="chat" element={<Chat/>} />
+            <Route path="chat" element={<Chat />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="profile" element={<Profile />} />
             <Route path="history" element={<ChatHistory />} />

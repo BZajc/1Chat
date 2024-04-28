@@ -6,6 +6,9 @@ interface ChatState {
   userImage: string | null;
   userName: string | null;
   id: number;
+  feedback: "positive" | "negative" | "none" | null;
+  addUser: boolean;
+  blockUser: boolean;
   messages: {
     message: string;
     type: "left" | "right";
@@ -23,6 +26,9 @@ const chatSlice = createSlice({
     userName: null,
     id: 0,
     messages: [],
+    feedback: null,
+    addUser: false,
+    blockUser: false,
   },
   reducers: {
     setConnecting: (state: ChatState, action: { payload: boolean }) => {
@@ -61,6 +67,16 @@ const chatSlice = createSlice({
     removeMessages: (state: ChatState) => {
       state.messages = [];
     },
+    setFeedback: (state: ChatState, action: { payload: "positive" | "negative" | "none"}) => {
+      state.feedback = action.payload;
+    },
+    setAddUser: (state: ChatState, action: { payload: boolean }) => {
+      state.addUser = action.payload;
+      console.log("add user:", state.addUser);
+    },
+    setBlockUser: (state: ChatState, action: { payload: boolean }) => {
+      state.blockUser = action.payload;
+    }
   },
 });
 export default chatSlice.reducer;
@@ -72,6 +88,9 @@ export const {
   addMessage,
   removeMessages,
   setUserId,
+  setFeedback,
+  setAddUser,
+  setBlockUser,
 } = chatSlice.actions;
 export const selectConnecting = (state: { chat: ChatState }) =>
   state.chat.connecting;
@@ -84,3 +103,6 @@ export const selectUserName = (state: { chat: ChatState }) =>
 export const selectMessages = (state: { chat: ChatState }) =>
   state.chat.messages;
 export const selectUserId = (state: { chat: ChatState }) => state.chat.id;
+export const selectFeedback = (state: { chat: ChatState }) => state.chat.feedback;
+export const selectAddUser = (state: { chat: ChatState }) => state.chat.addUser;
+export const selectBlockUser = (state: { chat: ChatState }) => state.chat.blockUser;

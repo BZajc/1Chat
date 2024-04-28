@@ -93,7 +93,7 @@
     border-radius: 8px;
     cursor: pointer;
     transition: transform 0.3s, color 0.3s, background-color 0.3s;
-    @include chatHistoryFilter;
+    @include appearCenterJump;
     &:hover {
       transform: scale(1.1);
       background-color: $blue;

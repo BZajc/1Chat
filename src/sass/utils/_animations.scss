@@ -41,9 +41,9 @@
   }
 }
 
-@mixin chatHistoryFilter {
-  animation: chatHistoryFilter 0.3s ease-in-out forwards;
-  @keyframes chatHistoryFilter {
+@mixin appearCenterJump {
+  animation: appearCenterJump 0.3s ease-in-out forwards;
+  @keyframes appearCenterJump {
     0% {
       opacity: 0;
       scale: 0;

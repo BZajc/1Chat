@@ -1,6 +1,6 @@
 import React from "react";
 import { getAuth } from "firebase/auth";
-import { FaRegFaceGrinWink, FaLock, FaHandPeace, FaHashtag, FaPlane, FaPuzzlePiece, FaRegImage } from "react-icons/fa6";
+import { FaLock, FaHandPeace, FaHashtag, FaPlane, FaPuzzlePiece, FaRegImage } from "react-icons/fa6";
 import { FiActivity } from "react-icons/fi";
 function Dashboard() {
   const auth = getAuth();
@@ -24,7 +24,6 @@ function Dashboard() {
           />
           <div className="dashboard__profile-name">{user?.displayName}</div>
           <div className="dashboard__profile-overlay">Go to Profile tab</div>
-          <FaRegFaceGrinWink className="dashboard__bg-icon" />
         </div>
         <p className="dashboard__box-info">
           Here you can check your profile image or nickname. You can change it

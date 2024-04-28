@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import MobileNav from "../components/MobileNav";
-
 function MainPage() {
+
   return (
     <main>
       <div className="main-page">

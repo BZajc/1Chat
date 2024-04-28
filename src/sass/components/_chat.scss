@@ -19,7 +19,6 @@
     font-size: 1.5rem;
     border-radius: 8px;
     transition: background-color 0.3s;
-
     &:hover {
       background-color: $darkBlue;
     }
@@ -32,6 +31,8 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    @include appearCenterJump;
+
   }
   &__find-user-text {
     font-size: 1.5rem;
@@ -98,6 +99,7 @@
     border-radius: 8px;
     background-color: $black;
     z-index: 3;
+    @include appearCenterJump;
   }
 
   &__connected-button {
@@ -119,7 +121,6 @@
 
     .chat__connected-left-message & {
       left: 0;
-
     }
   }
 
@@ -128,6 +129,8 @@
     padding: 0.25rem;
     transition: color 0.3s;
     color: $blue;
+    @include appearCenterJump;
+
   }
 
   &__connected-buttons-box-active {
@@ -256,6 +259,7 @@
     align-items: center;
     justify-content: space-around;
     list-style: none;
+    @include appearCenterJump;
   }
 
   &__connected-leave-button,
@@ -280,6 +284,24 @@
     font-size: 1.75rem;
     &:hover {
       color: $yellow;
+    }
+  }
+
+  &__feedback-box {
+    position: absolute;
+    left: 2rem;
+    bottom: -2rem;
+    font-size: 3rem;
+  }
+
+  &__feedback-icon {
+    @include appearCenterJump;
+    &--positive {
+      color: $green;
+    }
+
+    &--negative {
+      color: $red;
     }
   }
 }

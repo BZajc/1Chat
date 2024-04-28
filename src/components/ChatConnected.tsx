@@ -12,6 +12,7 @@ import {
   FaArrowRightToBracket,
   FaRegSquarePlus,
   FaFaceLaughBeam,
+  FaUserMinus,
 } from "react-icons/fa6";
 import {
   setUserImage,
@@ -24,8 +25,21 @@ import {
   removeMessages,
   selectUserId,
   setUserId,
+  selectFeedback,
+  setFeedback,
+  selectAddUser,
+  setAddUser,
+  selectBlockUser,
+  setBlockUser,
 } from "../store/slices/chatSlice";
 import { setChatHistory } from "../store/slices/chatHistorySlice";
+import {
+  setPopupVisible,
+  setPopupMessage,
+  setPopupData,
+} from "../store/slices/popupSlice";
+import { PopupState } from "../store/slices/popupSlice";
+import { setMiniNav } from "../store/slices/navSlice";
 
 function ChatConnected() {
   const [userButtons, showUserButtons] = useState(false);
@@ -36,6 +50,9 @@ function ChatConnected() {
   const userName = useSelector(selectUserName);
   const userId = useSelector(selectUserId);
   const messages = useSelector(selectMessages);
+  const feedback = useSelector(selectFeedback);
+  const addUser = useSelector(selectAddUser);
+  const blockUser = useSelector(selectBlockUser);
 
   useEffect(() => {
     if (!userImage) {
@@ -65,6 +82,7 @@ function ChatConnected() {
     setInputValue(e.target.value);
   };
 
+  // Used to display when the message was sent
   const getCurrentTime = () => {
     const date = new Date();
     const hours = date.getHours().toString().padStart(2, "0");
@@ -86,7 +104,12 @@ function ChatConnected() {
     setTimeout(() => {
       dispatch(
         addMessage({
-          message: faker.lorem.words(Math.floor(Math.random() * 13) + 3).charAt(0).toUpperCase() + faker.lorem.words(Math.floor(Math.random() * 13) + 3).slice(1), // Random message with 3-15 words and first letter capitalized
+          message:
+            faker.lorem
+              .words(Math.floor(Math.random() * 13) + 3)
+              .charAt(0)
+              .toUpperCase() +
+            faker.lorem.words(Math.floor(Math.random() * 13) + 3).slice(1), // Random message with 3-15 words and first letter capitalized
           type: "left",
           time: getCurrentTime(),
           profileImage: userImage || "",
@@ -104,17 +127,65 @@ function ChatConnected() {
     ));
   };
 
+  // Show or hide user buttons
   const onMoreButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     showInputButtons(!inputButtons);
   };
 
+  // Leave chat and reset chat state
   const onLeaveChat = () => {
     dispatch(setConnected(false));
     dispatch(removeMessages());
     dispatch(setUserImage(""));
     dispatch(setUserName(""));
     dispatch(setUserId(0));
+    dispatch(setAddUser(false));
+    dispatch(setFeedback("none"));
+    dispatch(setBlockUser(false));
+  };
+
+  const displayPopup = (data: PopupState["popupType"], text: string) => {
+    dispatch(setMiniNav(true));
+    dispatch(setPopupVisible(true));
+    dispatch(setPopupMessage(text));
+    dispatch(setPopupData(data));
+  };
+
+  // Leave chat if user is blocked 
+  useEffect(() => {
+    if (blockUser) {
+      onLeaveChat();
+    }
+  }, [blockUser, onLeaveChat]);
+
+  // Display feedback icons based on feedback state in chatSlice
+  const displayFeedback = () => {
+    switch (feedback) {
+      case "positive":
+        return (
+          <div className="chat__feedback-box">
+            <FaThumbsUp className="chat__feedback-icon chat__feedback-icon--positive" />
+          </div>
+        );
+      case "negative":
+        return (
+          <div className="chat__feedback-box">
+            <FaThumbsDown className="chat__feedback-icon chat__feedback-icon--negative" />
+          </div>
+        );
+      case "none":
+        return null;
+      default:
+        return null;
+    }
+  };
+
+  // Display text based on addUser state in chatSlice
+  const addUserText = () => {
+    return addUser
+      ? `Do you want to remove ${userName} from contacts?`
+      : `Do you want to add ${userName} to contacts?`;
   };
 
   return (
@@ -130,6 +201,7 @@ function ChatConnected() {
         >
           <PiUserFocusLight />
         </button>
+        {displayFeedback()}
       </div>
       <ul
         className={`chat__connected-buttons-box ${
@@ -142,22 +214,55 @@ function ChatConnected() {
           </button>
         </li>
         <li className="chat__connected-item">
-          <button className="chat__connected-button">
+          <button
+            className="chat__connected-button"
+            onClick={() => {
+              displayPopup(
+                "positive-feedback",
+                `Do you want to leave positive feedback for ${userName}?`
+              );
+            }}
+          >
             <FaThumbsUp className="chat__connected-button-icon " />
           </button>
         </li>
         <li className="chat__connected-item">
-          <button className="chat__connected-button">
+          <button
+            className="chat__connected-button"
+            onClick={() => {
+              displayPopup(
+                "negative-feedback",
+                `Do you want to leave negative feedback for ${userName}?`
+              );
+            }}
+          >
             <FaThumbsDown className="chat__connected-button-icon " />
           </button>
         </li>
         <li className="chat__connected-item">
-          <button className="chat__connected-button">
-            <FaUserPlus className="chat__connected-button-icon " />
+          <button
+            className="chat__connected-button"
+            onClick={() => {
+              displayPopup("add", addUserText());
+            }}
+          >
+            {addUser ? (
+              <FaUserMinus className="chat__connected-button-icon " />
+            ) : (
+              <FaUserPlus className="chat__connected-button-icon " />
+            )}
           </button>
         </li>
         <li className="chat__connected-item">
-          <button className="chat__connected-button">
+          <button
+            className="chat__connected-button"
+            onClick={() => {
+              displayPopup(
+                "block",
+                `Do you want to block ${userName}? This action will finish the chat, and the user will also be removed from contacts if they were added`
+              );
+            }}
+          >
             <FaUserSlash className="chat__connected-button-icon " />
           </button>
         </li>

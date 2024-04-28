@@ -48,7 +48,6 @@ const chatHistorySlice = createSlice({
         };
       }
     ) => {
-      console.log(action.payload);
       const { userImage, userName, id, messages } = action.payload;
 
       // Find the index of the existing chat in the chat history
