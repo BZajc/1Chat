@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { faker } from "@faker-js/faker";
 import { PiUserFocusLight } from "react-icons/pi";
@@ -134,7 +134,7 @@ function ChatConnected() {
   };
 
   // Leave chat and reset chat state
-  const onLeaveChat = () => {
+  const onLeaveChat = useCallback(() => {
     dispatch(setConnected(false));
     dispatch(removeMessages());
     dispatch(setUserImage(""));
@@ -143,7 +143,7 @@ function ChatConnected() {
     dispatch(setAddUser(false));
     dispatch(setFeedback("none"));
     dispatch(setBlockUser(false));
-  };
+  }, [dispatch]);
 
   const displayPopup = (data: PopupState["popupType"], text: string) => {
     dispatch(setMiniNav(true));
