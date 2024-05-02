@@ -12,7 +12,7 @@ React (with Redux): A JavaScript library for building user interfaces, used for 
 
 TypeScript: A statically typed superset of JavaScript that enhances code quality and developer productivity.
 
-Firebase: A platform provided by Google for developing mobile and web applications. Firebase services are used for authentication, database management, and hosting.
+Firebase: A platform provided by Google for developing mobile and web applications. Firebase services are used for authentication and database management.
 
 ## Application Features
 
