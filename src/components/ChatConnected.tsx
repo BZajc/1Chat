@@ -32,7 +32,9 @@ import {
   selectBlockUser,
   setBlockUser,
 } from "../store/slices/chatSlice";
-import { setChatHistory } from "../store/slices/chatHistorySlice";
+import {
+  setChatHistory,
+} from "../store/slices/chatHistorySlice";
 import {
   setPopupVisible,
   setPopupMessage,
@@ -73,10 +75,11 @@ function ChatConnected() {
         userImage: userImage || "",
         userName: userName || "",
         id: userId || 0,
+        added: addUser,
         messages,
       })
     );
-  }, [userImage, userName, userId, messages, dispatch]);
+  }, [userImage, userName, userId, messages, addUser, dispatch]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -149,10 +152,10 @@ function ChatConnected() {
     dispatch(setMiniNav(true));
     dispatch(setPopupVisible(true));
     dispatch(setPopupMessage(text));
-    dispatch(setPopupData(data));
+    dispatch(setPopupData({type: data}));
   };
 
-  // Leave chat if user is blocked 
+  // Leave chat if user is blocked
   useEffect(() => {
     if (blockUser) {
       onLeaveChat();

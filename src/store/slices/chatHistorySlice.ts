@@ -6,6 +6,7 @@ interface ChatHistoryState {
     userImage: string | null;
     userName: string | null;
     id: number;
+    added: boolean;
     messages: {
       message: string;
       type: "left" | "right";
@@ -22,6 +23,7 @@ const chatHistorySlice = createSlice({
       {
         userImage: null,
         userName: null,
+        added: false,
         id: 0,
         messages: [],
       },
@@ -39,6 +41,7 @@ const chatHistorySlice = createSlice({
           userImage: string;
           userName: string;
           id: number;
+          added: boolean;
           messages: {
             message: string;
             type: "left" | "right";
@@ -48,7 +51,7 @@ const chatHistorySlice = createSlice({
         };
       }
     ) => {
-      const { userImage, userName, id, messages } = action.payload;
+      const { userImage, userName, id, added, messages } = action.payload
 
       // Find the index of the existing chat in the chat history
       const existingChatIndex = state.chatHistory.findIndex(
@@ -60,17 +63,25 @@ const chatHistorySlice = createSlice({
         // Get the index of the chat
         const chatIndex = existingChatIndex !== -1 ? existingChatIndex : state.chatHistory.findIndex((chat) => chat.id === 0);
         // Update the chat at the specified index
-        state.chatHistory[chatIndex] = { userImage, userName, id, messages };
+        state.chatHistory[chatIndex] = { userImage, userName, id, added, messages };
       } else {
         // Add a new chat to the chat history
-        state.chatHistory.push({ userImage, userName, id, messages });
+        state.chatHistory.push({ userImage, userName, id, added, messages });
+      }
+      console.log(JSON.parse(JSON.stringify(state.chatHistory)));
+    },
+    setRemoveContact: (state: ChatHistoryState, action: { payload: number }) => {
+      const { payload: id } = action;
+      const userIndex = state.chatHistory.findIndex((user) => user.id === id);
+      if (userIndex !== -1) {
+        state.chatHistory[userIndex].added = false;
       }
     },
   },
 });
 
 export default chatHistorySlice.reducer;
-export const { setSortType, setChatHistory } = chatHistorySlice.actions;
+export const { setSortType, setChatHistory, setRemoveContact } = chatHistorySlice.actions;
 export const selectSortType = (state: { chatHistory: ChatHistoryState }) =>
   state.chatHistory.sortType;
 export const selectChatHistory = (state: { chatHistory: ChatHistoryState }) =>
